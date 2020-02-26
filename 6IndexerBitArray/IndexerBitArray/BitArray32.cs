@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace IndexerBitArray
 {
-
     struct BitArray32
     {
         private uint mValue;
@@ -44,7 +43,7 @@ namespace IndexerBitArray
             }
         }
 
-        #region The Indexer can be writtern returning bool
+        #region The Indexer can be written returning bool
         //public bool this[int index]
         //{
         //    get
