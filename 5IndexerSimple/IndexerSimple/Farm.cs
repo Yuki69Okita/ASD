@@ -22,7 +22,7 @@ namespace IndexerSimple
                 {
                     return animals[index];
                 }
-                return "Error";
+                return $"Invalid index: {index}";
             }
             set
             {
@@ -30,10 +30,14 @@ namespace IndexerSimple
                 {
                     animals[index] = value;
                 }
+                else
+                {
+                    Console.WriteLine($"Failed to set value '{value}' at index: {index}");
+                }
             }
         }
 
-        public int GetNumberAnimals()
+        public int GetAnimalsCount()
         {
             return animals.Length;
         }
