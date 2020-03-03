@@ -11,7 +11,7 @@ namespace _2Collections
     {
         public void Add(T item)
         {
-            base.List.Add(item);
+            base.InnerList.Add(item);
         }
 
         public void Remove(T item)
