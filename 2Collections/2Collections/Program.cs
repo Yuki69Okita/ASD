@@ -19,6 +19,7 @@ namespace _2Collections
             names.Add("Maria");
             names.Add("Georgi");
 
+            // follow the DRY principle and use PrintList(names);
             foreach (string item in names)
             {
                 Console.WriteLine(item);
@@ -29,7 +30,7 @@ namespace _2Collections
             Console.WriteLine();
 
             names.Insert(3, "Lili");
-            Print(names);
+            PrintList(names);
 
             Console.WriteLine("Number of names: " + names.Count());
 
@@ -40,7 +41,7 @@ namespace _2Collections
             Console.WriteLine("Number of names after Clear(): " + names.Count());
         }
 
-        private static void Print(MyCollection<string> names)
+        private static void PrintList(MyCollection<string> names)
         {
             foreach (string item in names)
             {
