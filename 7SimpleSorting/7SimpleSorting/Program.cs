@@ -12,7 +12,7 @@ namespace _7SimpleSorting
         {
             int len = 10;
             int[] array = new int[len];
-            RandArray(array, 20, false);
+            RandArray(array, 2 * len, false);
             Console.WriteLine("Original Array: ");
             PrintArray(array);
 
@@ -82,9 +82,28 @@ namespace _7SimpleSorting
             }
         }
 
-
         // Buble sort which orders from biggest to smallest
         static void BubbleSort2(int[] arr)
+        {
+            int n = arr.Length;
+            for (int k = 0; k < n - 1; k++)
+            {
+                // (n-k-1) is for ignoring comparisons of elements which have already been compared in earlier iterations
+                for (int i = 0; i < n - k - 1; i++)
+                {
+                    if (arr[i] > arr[i + 1])
+                    {
+                        SwapValues<int>(arr, i, i + 1);
+                    }
+                }
+                //0[]
+                PrintArray(arr);
+            }
+        }
+
+
+        // Buble sort which orders from biggest to smallest
+        static void BubbleSort3(int[] arr)
         {
             int n = arr.Length;
             for (int i = n - 1; i > 0; i--)
