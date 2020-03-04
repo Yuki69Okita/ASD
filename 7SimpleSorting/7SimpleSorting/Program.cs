@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,24 +11,48 @@ namespace _7SimpleSorting
     {
         static void Main(string[] args)
         {
-            int len = 10;
-            int[] array = new int[len];
-            RandArray(array, 2 * len, false);
+            int n = 10;
+            int[] array = new int[n];
+            RandArray(array, 2 * n, false);
             Console.WriteLine("Original Array: ");
             PrintArray(array);
 
+            Stopwatch sw = new Stopwatch();
+
             Console.WriteLine("Bubble Sort: ");
-            BubbleSort2(array);
-            PrintArray(array);
+            int[] arrayCopy = (int[])array.Clone();
+            sw.Start();
+            BubbleSort(arrayCopy);
+            sw.Stop();
+            //Console.WriteLine("Time to execute: " + sw.Elapsed);
+            PrintArray(arrayCopy);
 
             int[] arrayCopy2 = (int[])array.Clone();
             Console.WriteLine("Selection Sort: ");
+            sw.Reset();
+            sw.Start();
             SelectionSort(arrayCopy2);
+            sw.Stop();
+            //Console.WriteLine("Time to execute: " + sw.Elapsed);
             PrintArray(arrayCopy2);
 
             int[] arrayCopy3 = (int[])array.Clone();
             Console.WriteLine("Insertion Sort: ");
+            sw.Reset();
+            sw.Start();
             InsertionSort(arrayCopy3);
+            sw.Stop();
+            //Console.WriteLine("Time to execute: " + sw.Elapsed);
+            /PrintArray(arrayCopy3);
+
+
+            int[] arrayCopy4 = (int[])array.Clone();
+            Console.WriteLine("My Simple Sort: ");
+            sw.Reset();
+            sw.Start();
+            MySimpleSort(arrayCopy4);
+            sw.Stop();
+            //Console.WriteLine("Time to execute: " + sw.Elapsed);
             PrintArray(arrayCopy3);
         }
 
@@ -35,7 +60,7 @@ namespace _7SimpleSorting
         {
             for (int i = 0; i < arr.Length; i++)
             {
-                Console.Write(arr[i] + "{0}", i < arr.Length - 1 ? " " : "");
+                Console.Write(arr[i] + " ");
             }
             Console.WriteLine();
             Console.WriteLine();
@@ -58,8 +83,6 @@ namespace _7SimpleSorting
 
         static void SwapValues<T>(T[] arr, int i, int j)
         {
-            if (arr.Length <= i || arr.Length <= j) { return; }
-
             T temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
@@ -78,7 +101,7 @@ namespace _7SimpleSorting
                         SwapValues<int>(arr, j, j - 1);
                     }
                 }
-                PrintArray(arr);
+                // PrintArray(arr);
             }
         }
 
@@ -96,11 +119,9 @@ namespace _7SimpleSorting
                         SwapValues<int>(arr, i, i + 1);
                     }
                 }
-                //0[]
-                PrintArray(arr);
+                // PrintArray(arr);
             }
         }
-
 
         // Buble sort which orders from biggest to smallest
         static void BubbleSort3(int[] arr)
@@ -115,7 +136,7 @@ namespace _7SimpleSorting
                         SwapValues<int>(arr, j, j + 1);
                     }
                 }
-                //PrintArray(arr);
+                PrintArray(arr);
             }
         }
 
@@ -147,7 +168,8 @@ namespace _7SimpleSorting
                 int x = arr[i], j = i;
                 while (j > 0 && arr[j - 1] > x)
                 {
-                    arr[j] = arr[j - 1]; j--;
+                    arr[j] = arr[j - 1];
+                    j--;
                 }
                 arr[j] = x;
                 //Console.WriteLine("a[{0}]={1}",j, arr[j]);
@@ -155,6 +177,9 @@ namespace _7SimpleSorting
             }
         }
 
+        // за всеки елемент от масива 0..N-1 правил следното:
+        // проверяваме го със всички елементи след него
+        // и ако имаме елемент който който е по-малък, разменяме им местата
         static void MySimpleSort(int[] arr)
         {
             int n = arr.Length;
@@ -167,9 +192,8 @@ namespace _7SimpleSorting
                         SwapValues<int>(arr, i, j);
                     }
                 }
-                PrintArray(arr);
+                //PrintArray(arr);
             }
         }
-
     }
 }
